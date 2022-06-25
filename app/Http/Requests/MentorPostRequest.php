@@ -24,7 +24,11 @@ class MentorPostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:100',
+            'email' => 'required|unique:users',
+            'foto' => 'nullable|mimes:jpeg,jpg,png|max:2048',
+            'profesi' => 'required|max:100',
+            'deskripsi' => 'required',
         ];
     }
 }

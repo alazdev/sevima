@@ -82,9 +82,6 @@
     <script src="{{ asset('asset-admin/vendors/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
 
     <script>
-        @if ($errors->any())
-            $('#modalTambahData').modal('show');
-        @endif
         $(function () {
             var table = $('#datatables-siswa').DataTable({
                 responsive: true,

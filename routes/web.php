@@ -39,8 +39,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
         Route::post('/data', [App\Http\Controllers\Admin\MentorController::class, 'data'])->name('data');
         Route::post('/tambah', [App\Http\Controllers\Admin\MentorController::class, 'store'])->name('store');
         Route::get('/{id}/detail', [App\Http\Controllers\Admin\MentorController::class, 'show'])->name('show');
-        Route::get('/{id}/edit', [App\Http\Controllers\Admin\MentorController::class, 'edit'])->name('edit');
-        Route::put('/{id}/ubah', [App\Http\Controllers\Admin\MentorController::class, 'update'])->name('update');
+        Route::put('/{id}/atur-ulang-kata-sandi', [App\Http\Controllers\Admin\MentorController::class, 'resetPassword'])->name('reset-password');
         Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\MentorController::class, 'destroy'])->name('destroy');
     });
 

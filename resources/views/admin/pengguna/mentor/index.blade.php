@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Admin')
+@section('title', '| Mentor')
 
 @section('head')
     <!-- Data Table CSS -->
@@ -20,11 +20,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('admin.admin.store')}}">
+                    <form method="POST" action="{{route('admin.mentor.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nama*</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama Admin...">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Nama Mentor...">
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -33,8 +33,35 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email*</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email Admin..." required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Email Mentor..." required>
                             @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control @error('foto') is-invalid @enderror" id="foto" name="foto" placeholder="Foto Mentor..." accept="image/*">
+                            @error('foto')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="profesi">Profesi*</label>
+                            <input type="text" class="form-control @error('profesi') is-invalid @enderror" id="profesi" name="profesi" placeholder="Profesi Mentor..." required>
+                            @error('profesi')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsi">deskripsi*</label>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi" placeholder="Deskripsi Mentor..." required></textarea>
+                            @error('deskripsi')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -44,7 +71,7 @@
                             <label for="password">Kata Sandi*</label>
                             <input type="text" class="form-control disabled @error('password') is-invalid @enderror" id="password" name="password" placeholder="Kata Sandi..." value="Secret123" disabled>
                             <span class="feedback" role="alert">
-                                <strong>Kata Sandi secara default adalah 'Secret123', setelah admin ditambahkan disarankan untuk langsung mengubah Kata Sandi di profil.</strong>
+                                <strong>Kata Sandi secara default adalah 'Secret123', setelah mentor ditambahkan disarankan untuk langsung mengubah Kata Sandi di profil.</strong>
                             </span>
                         </div>
                         <hr>
@@ -60,7 +87,7 @@
     <!-- Breadcrumb -->
     <nav class="hk-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-light bg-transparent">
-            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+            <li class="breadcrumb-item active" aria-current="page">Mentor</li>
         </ol>
     </nav>
     <!-- /Breadcrumb -->
@@ -71,7 +98,7 @@
         <!-- Title -->
         <div class="hk-pg-header align-items-top">
             <div>
-                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Admin</h4>
+                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="database"></i></span></span>Mentor</h4>
             </div>
             <div class="d-flex">
                 <button class="btn btn-sm btn-outline-primary btn-wth-icon icon-wthot-bg mb-15">
@@ -89,11 +116,12 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="table-wrap">
-                                <table id="datatables-admin" class="table table-hover w-100 display pb-30">
+                                <table id="datatables-mentor" class="table table-hover w-100 display pb-30">
                                     <thead>
                                         <tr>
                                             <th data-priority="1">Nama</th>
                                             <th>Email</th>
+                                            <th>Profesi</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </thead>
@@ -102,6 +130,7 @@
                                         <tr>
                                             <th data-priority="1">Nama</th>
                                             <th>Email</th>
+                                            <th>Profesi</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -138,13 +167,13 @@
             $('#modalTambahData').modal('show');
         @endif
         $(function () {
-            var table = $('#datatables-admin').DataTable({
+            var table = $('#datatables-mentor').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: {
                     type: "POST",
-                    url: "{{ route('admin.admin.data') }}",
+                    url: "{{ route('admin.mentor.data') }}",
                     data: function (d) {
                         d._token = "{{csrf_token()}}"
                     },
@@ -156,6 +185,7 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
+                    {data: 'mentor.profesi', name: 'profesi'},
                     {
                         data: 'action', 
                         name: 'action',
@@ -182,7 +212,7 @@
             var nama = $(event.currentTarget).data("nama");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah Kamu yakin untuk mengatur ulang kata sandi admin dengan nama "'+nama+'"?',
+                title: 'Apakah Kamu yakin untuk mengatur ulang kata sandi mentor dengan nama "'+nama+'"?',
                 text: "",
                 icon: "warning",
                 showCancelButton: true,
@@ -203,7 +233,7 @@
             var nama = $(event.currentTarget).data("nama");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah Kamu yakin untuk menghapus admin dengan nama "'+nama+'"?',
+                title: 'Apakah Kamu yakin untuk menghapus mentor dengan nama "'+nama+'"?',
                 text: "Jika Kamu hapus, data tidak akan bisa dikembalikan lagi!",
                 icon: "warning",
                 showCancelButton: true,

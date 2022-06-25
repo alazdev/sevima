@@ -139,7 +139,11 @@ class MataPelajaranSeeder extends Seeder
                 'status_id' => 3,
             ],
             [
-                'nama' => 'Bahasa Indonesia',
+                'nama' => 'TPS-UTBK',
+                'status_id' => 3,
+            ],
+            [
+                'nama' => 'TPA-UTBK',
                 'status_id' => 3,
             ],
             [

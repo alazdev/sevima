@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="hk-row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="card card-sm">
                             <div class="card-body">
                                 <div class="hk-legend-wrap mb-10">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                         <div class="hk-row">
                             <div class="col-lg-4">
                                 <div class="card card-sm">

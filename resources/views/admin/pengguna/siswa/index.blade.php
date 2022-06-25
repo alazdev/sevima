@@ -40,7 +40,6 @@
                                         <tr>
                                             <th data-priority="1">Nama</th>
                                             <th>Email</th>
-                                            <th>Email Orang Tua</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </thead>
@@ -49,7 +48,6 @@
                                         <tr>
                                             <th data-priority="1">Nama</th>
                                             <th>Email</th>
-                                            <th>Email Orang Tua</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -101,7 +99,6 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
-                    {data: 'siswa.email_orang_tua', name: 'email_orang_tua'},
                     {
                         data: 'action', 
                         name: 'action',

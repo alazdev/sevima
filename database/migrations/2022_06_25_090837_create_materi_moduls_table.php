@@ -15,6 +15,10 @@ class CreateMateriModulsTable extends Migration
     {
         Schema::create('materi_moduls', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sub_modul_id')->constrained('sub_moduls');
+            $table->string('judul');
+            $table->integer('tipe');
+            $table->text('isi');
             $table->timestamps();
         });
     }

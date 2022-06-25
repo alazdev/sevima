@@ -39,7 +39,7 @@ class StatusSeeder extends Seeder
                 'status' => 1
             ],
             [
-                'nama' => 'Tamat/Bekerja',
+                'nama' => 'Tamat/Pekerja',
                 'tipe' => 0,
                 'urutan' => 5,
                 'status' => 1

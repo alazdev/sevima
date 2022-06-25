@@ -17,7 +17,6 @@ class SiswaSeeder extends Seeder
             [
                 'user_id' => 4,
                 'foto' => NULL,
-                'email_orang_tua' => 'orangtua@gmail.com',
             ],
         );
     }

@@ -15,7 +15,6 @@ class SiswaFactory extends Factory
     {
         return [
             'foto' => NULL,
-            'email_orang_tua' => $this->faker->email(),
         ];
     }
 }

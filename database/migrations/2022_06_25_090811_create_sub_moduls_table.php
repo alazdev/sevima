@@ -15,6 +15,10 @@ class CreateSubModulsTable extends Migration
     {
         Schema::create('sub_moduls', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('modul_id')->constrained('moduls');
+            $table->string('judul');
+            $table->integer('tipe');
+            $table->text('isi');
             $table->timestamps();
         });
     }

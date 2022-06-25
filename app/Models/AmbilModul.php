@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ObjektifSoal extends Model
+class AmbilModul extends Model
 {
     use HasFactory;
 }

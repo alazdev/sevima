@@ -61,11 +61,17 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row mb-3">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Daftar
                                 </button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="mb-0">
+                            <div class="col-sm-12 text-center">
+                                <a href="{{url('auth/google/redirect')}}" class="btn btn-primary btn-block btn-wth-icon"> <span class="icon-label"><i class="fa fa-google"></i> </span><span class="btn-text">Masuk dengan Google</span></a>
                             </div>
                         </div>
                     </form>

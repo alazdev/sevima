@@ -16,12 +16,21 @@ class UserFactory extends Factory
     public function definition()
     {
         $date = $this->faker->dateTimeBetween('-15 months', now());
+        $arrLevel = [];
+        $arrayRatio = [[1,2],[2,3],[60,4]];
+        foreach($arrayRatio as $data)
+        {
+            for($i = 0; $i < $data[0]; $i++)
+            {
+                $arrLevel[] = $data[1];
+            }
+        }
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('Secret123'),
-            'level' => $this->faker->randomElement([2,3,4]),
+            'level' => $this->faker->randomElement($arrLevel),
             'remember_token' => Str::random(10),
             'created_at' => $date,
             'updated_at' => $date,

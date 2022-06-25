@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MentorPostRequest extends FormRequest
+class KategoriPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,22 +24,14 @@ class MentorPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
-            'email' => 'required|unique:users',
-            'foto' => 'nullable|mimes:jpeg,jpg,png|max:2048',
-            'profesi' => 'required|max:100',
-            'deskripsi' => 'required',
+            'nama' => 'required|max:100',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Nama',
-            'email' => 'Email',
-            'foto' => 'Foto',
-            'profesi' => 'Profesi',
-            'deskripsi' => 'Deskripsi',
+            'nama' => 'Nama',
         ];
     }
 }

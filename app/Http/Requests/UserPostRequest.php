@@ -28,4 +28,12 @@ class UserPostRequest extends FormRequest
             'email' => 'required|unique:users',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Nama',
+            'email' => 'Email',
+        ];
+    }
 }

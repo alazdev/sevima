@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::get('/auth/google/redirect', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider']);
+Route::get('/auth/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback']);
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -50,6 +52,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
     });
     // END Menu Pengguna
 
+    // STAR Menu Master Data
     Route::group(['prefix'=>'status','as'=>'status.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\StatusController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\Admin\StatusController::class, 'data'])->name('data');
@@ -59,4 +62,15 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
         Route::put('/{id}/ubah', [App\Http\Controllers\Admin\StatusController::class, 'update'])->name('update');
         Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\StatusController::class, 'destroy'])->name('destroy');
     });
+
+    Route::group(['prefix'=>'kategori','as'=>'kategori.'], function(){
+        Route::get('/', [App\Http\Controllers\Admin\KategoriController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\Admin\KategoriController::class, 'data'])->name('data');
+        Route::post('/tambah', [App\Http\Controllers\Admin\KategoriController::class, 'store'])->name('store');
+        Route::get('/{id}/detail', [App\Http\Controllers\Admin\KategoriController::class, 'show'])->name('show');
+        Route::get('/{id}/edit', [App\Http\Controllers\Admin\KategoriController::class, 'edit'])->name('edit');
+        Route::put('/{id}/ubah', [App\Http\Controllers\Admin\KategoriController::class, 'update'])->name('update');
+        Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\KategoriController::class, 'destroy'])->name('destroy');
+    });
+    // END Menu Master Data
 });

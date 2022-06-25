@@ -50,6 +50,7 @@ git clone https://github.com/alazimdev/sevima.git
 cd sevima
 composer install
 cp .env.example .env
+php artisan storage:link
 ```
 
 Sesuaikan value DB_ yang ada di .env dengan koneksi MySQL serta membuat database yang sesuai dengan DB_DATABASE, setelah itu lakukan migrate seperti berikut :

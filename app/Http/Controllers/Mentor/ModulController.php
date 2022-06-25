@@ -44,7 +44,7 @@ class ModulController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $actionBtn = '
-                        <a href="'.route('mentor.modul.view', $row->id).'" class="edit btn btn-outline-secondary btn-sm mx-1"><i class="fa fa-eye"></i> Lihat</a> 
+                        <a href="'.route('mentor.modul.show', $row->id).'" class="edit btn btn-outline-secondary btn-sm mx-1"><i class="fa fa-eye"></i> Lihat</a> 
                         <a href="'.route('mentor.modul.sub-modul.index', $row->id).'" class="edit btn btn-outline-info btn-sm mx-1"><i class="fa fa-cog"></i> Konfigurasi Sub Modul</a> 
                         <a href="#" onclick="deleteData()" data-value="'.$row->id.'" data-judul="'.$row->judul.'" class="delete btn btn-outline-danger btn-sm mx-1" disabled><i class="fa fa-trash"></i> Hapus</a>
                         <form id="delete-data-'.$row->id.'" action="'.route('mentor.modul.destroy', $row->id).'" method="POST" class="d-none">

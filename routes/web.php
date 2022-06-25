@@ -19,7 +19,7 @@ Route::get('/auth/google/callback', [App\Http\Controllers\Auth\LoginController::
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function(){
+Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'cekLevel:1 2'], function(){
     Route::get('/', [App\Http\Controllers\Admin\DasborController::class, 'index'])->name('index');
     Route::group(['prefix'=>'data','as'=>'data.'], function(){
         Route::get('/pie-chart', [App\Http\Controllers\Admin\DasborController::class, 'pieChart'])->name('pie-chart');
@@ -31,6 +31,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
     Route::group(['prefix'=>'modul','as'=>'modul.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\ModulController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\Admin\ModulController::class, 'data'])->name('data');
+        Route::get('/{id}/detail', [App\Http\Controllers\Admin\ModulController::class, 'show'])->name('show');
     });
     // END Menu Modul
 
@@ -82,7 +83,7 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
     // END Menu Master Data
 });
 
-Route::group(['prefix'=>'mentor','as'=>'mentor.','middleware'=>'auth'], function(){
+Route::group(['prefix'=>'mentor','as'=>'mentor.','middleware'=>'cekLevel:3'], function(){
     Route::group(['prefix'=>'data','as'=>'data.'], function(){
         Route::get('/kelas', [App\Http\Controllers\Mentor\MentorController::class, 'kelas'])->name('kelas');
         Route::get('/mata-pelajaran', [App\Http\Controllers\Mentor\MentorController::class, 'mataPelajaran'])->name('mata-pelajaran');
@@ -92,7 +93,7 @@ Route::group(['prefix'=>'mentor','as'=>'mentor.','middleware'=>'auth'], function
         Route::get('/', [App\Http\Controllers\Mentor\ModulController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\Mentor\ModulController::class, 'data'])->name('data');
         Route::post('/tambah', [App\Http\Controllers\Mentor\ModulController::class, 'store'])->name('store');
-        Route::get('/{id}/detail', [App\Http\Controllers\Mentor\ModulController::class, 'view'])->name('view');
+        Route::get('/{id}/detail', [App\Http\Controllers\Mentor\ModulController::class, 'show'])->name('show');
         Route::group(['prefix'=>'{id_modul}/sub-modul','as'=>'sub-modul.'], function(){
             Route::get('/', [App\Http\Controllers\Mentor\SubModulController::class, 'index'])->name('index');
             Route::post('/data', [App\Http\Controllers\Mentor\SubModulController::class, 'data'])->name('data');
@@ -109,9 +110,11 @@ Route::group(['prefix'=>'mentor','as'=>'mentor.','middleware'=>'auth'], function
     });
 });
 
-Route::group(['prefix'=>'siswa','as'=>'siswa.','middleware'=>'auth'], function(){
-    Route::group(['prefix'=>'modul','as'=>'modul.'], function(){
-        Route::get('/', [App\Http\Controllers\Admin\ModulController::class, 'index'])->name('index');
-        Route::post('/data', [App\Http\Controllers\Admin\ModulController::class, 'data'])->name('data');
+Route::group(['prefix'=>'siswa','as'=>'siswa.','middleware'=>'cekLevel:4'], function(){
+    Route::get('/{id}/ambil-modul', [App\Http\Controllers\Siswa\AmbilModulController::class, 'ambilModul'])->name('ambil-modul');
+    Route::group(['prefix'=>'ambil-modul','as'=>'ambil-modul.'], function(){
+        Route::get('/', [App\Http\Controllers\Siswa\AmbilModulController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\Siswa\AmbilModulController::class, 'data'])->name('data');
+        Route::get('/{id}/detail', [App\Http\Controllers\Siswa\AmbilModulController::class, 'show'])->name('show');
     });
 });

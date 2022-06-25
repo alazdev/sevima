@@ -3,62 +3,100 @@
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Tentang SuperKlas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+SuperKlas adalah aplikasi berbasis web yang diperuntukkan untuk menyimpan data berupa modul pembelajaran GRATIS sebanyak-banyaknya. Tujuannya mempermudah siswa perdesaan untuk mendapatkan ilmu dan kurikulum yang sama dengan kurikulum yang ada di kota. Fitur utama :
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Mempermudah Siswa menemukan informasi seputar buku, pembahasan mata pelajaran.
+- Modul pembelajaran sudah berupa video dan teks.
+- Membantu siswa menemukan modul yang dia minati serta bisa menyimpan modul tersebut.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Latar Belakang SuperKlas
 
-## Learning Laravel
+Latar belakang SuperKlas sendiri adalah perbedaan dalam kurikulum di kota dan di desa, sehingga penyebabkan ketidaksetaraan pemasokan ilmu antara siswa di desa dengan siswa di kota. Selain itu, buku-buku yang dijual diluaran sana terlalu mahal jika dibandingkan dengan ekonomi daerah. Kesulitan atas jangkauan perpustakaan di daerah-daerah apalagi di era Pandemi COVID-19 ini.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Mengapa Harus Laravel?
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Laravel adalah salah satu *framework PHP* yang bersifat *open source*. Laravel memiliki sintaks ekspresif dan elegan yang dirancang untuk memudahkan dan mempercepat dalam membangun sebuah aplikasi. Laravel juga sudah menggunakan Arsitektur MVC dengan dokumentasi lengkap dan resmi serta mementingkan keamanan aplikasi.
 
-## Laravel Sponsors
+## Dibutuhkan
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. PHP ^7.3|^8.0
+2. MySQL
+3. Composer
+4. NodeJS
+5. GitBash (opsional)
 
-### Premium Partners
+## Teknologi Utama
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+1. Laravel 8
+2. Bootstrap
+3. JQuery
+4. Ajax
+5. DataTables
+6. Sweet Alert
+7. ChartJS
+8. Laravel Socialite
 
-## Contributing
+## Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Jalankan perintah berikut di terminal :
 
-## Code of Conduct
+```bash
+git clone https://github.com/alazimdev/sevima.git
+cd sevima
+composer install
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Sesuaikan value DB_ yang ada di .env dengan koneksi MySQL serta membuat database yang sesuai dengan DB_DATABASE, setelah itu lakukan migrate seperti berikut :
 
-## Security Vulnerabilities
+```bash
+php artisan migrate --seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+> Disclaimer: beberapa credential sengaja diletakkan di .env.example untuk mempermudah para juri untuk menginstalasi aplikasi.
 
-## License
+## Menjalankan Aplikasi
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Jalankan perintah berikut di terminal :
+
+```bash
+php artisan serve
+```
+
+Buka browser dan masukkan url http://127.0.0.1:8000/ lalu `Enter`
+
+Dengan seed yang telah dimasukkan saat instalasi, maka kita bisa login sebagai user berikut :
+
+1. Super Admin
+
+   Email : superadmin@gmail.com
+
+   Password : Secret123
+
+2. Admin
+
+   Email : admin@gmail.com
+
+   Password : Secret123
+
+3. Mentor
+
+   Email : halimah@gmail.com
+
+   Password : Secret123
+
+4. Siswa
+
+   Email : alazim.dev@gmail.com
+
+   Password : Secret123
+
+
+## Lisensi
+
+Framework Laravel adalah perangkat lunak sumber terbuka berlisensi di bawah [MIT license](https://opensource.org/licenses/MIT).

@@ -39,12 +39,10 @@ class DasborController extends Controller
     {
         $modul  = Modul::count();
         $ambilModul = AmbilModul::count();
-        $rating = AmbilModul::whereNotNull('rating')->count();
 
         $data = [
             'modul' => $modul,
             'ambilModul' => $ambilModul,
-            'rating' => $rating,
         ];
         return response()->json($data);
     }

@@ -18,8 +18,6 @@ class CreateAmbilModulsTable extends Migration
             $table->foreignId('modul_id')->constrained('moduls');
             $table->foreignId('user_id')->constrained('users');
             $table->integer('status')->default(1);
-            $table->integer('rating')->nullable()->default(NULL);
-            $table->string('komentar')->nullable()->default(NULL);
             $table->timestamps();
         });
     }

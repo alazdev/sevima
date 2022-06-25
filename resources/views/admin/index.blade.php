@@ -71,7 +71,7 @@
 
                     <div class="col-lg-6">
                         <div class="hk-row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="card card-sm">
                                     <div class="card-body">
                                         <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Modul</span>
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="card card-sm">
                                     <div class="card-body">
                                         <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Modul Telah Diambil</span>
@@ -93,20 +93,6 @@
                                             <div>
                                                 <span class="d-block">
                                                     <span class="display-5 font-weight-400 text-dark widget-load jumlah-ambil-modul">sedang memuat...</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card card-sm">
-                                    <div class="card-body">
-                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Rating</span>
-                                        <div class="d-flex align-items-center justify-content-between position-relative">
-                                            <div>
-                                                <span class="d-block">
-                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-rating">sedang memuat...</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -359,7 +345,6 @@
             {
                 $('.jumlah-modul').text(data.modul);
                 $('.jumlah-ambil-modul').text(data.ambilModul);
-                $('.jumlah-rating').text(data.rating);
             },
             error: function(xhr, status, error)
             {

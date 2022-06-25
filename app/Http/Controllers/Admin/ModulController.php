@@ -4,82 +4,55 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DataTables;
+
+use App\Models\Modul;
 
 class ModulController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        return view('admin.modul.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function data(Request $request)
     {
-        //
+        if($request->ajax())
+        {
+            $data = Modul::with('user')->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('status', function($row){
+                    if($row->status == 0)
+                    {
+                        return '<span class="badge badge-outline-info">Belum diverifikasi</span>';
+                    }
+                    else if($row->status == 1)
+                    {
+                        return '<span class="badge badge-outline-warning">Dalam permintaan verifikasi</span>';
+                    }
+                    else if($row->status == 2)
+                    {
+                        return '<span class="badge badge-outline-success">Terverifikasi</span>';
+                    }
+                    return '';
+                })
+                ->addColumn('action', function($row){
+                    $actionBtn = '
+                        <a href="'.route('admin.modul.show', $row->id).'" class="edit btn btn-outline-secondary btn-sm mx-1"><i class="fa fa-eye"></i> Lihat</a>
+                    ';
+                    return $actionBtn;
+                })
+                ->rawColumns(['status','action'])
+                ->make(true);
+        }
+        
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
-        //
-    }
+        $modul = Modul::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('admin.modul.detail', compact('modul'));
     }
 }

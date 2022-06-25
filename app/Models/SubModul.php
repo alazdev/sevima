@@ -13,4 +13,9 @@ class SubModul extends Model
     {
         return $this->belongsTo('App\Models\Modul');
     }
+
+    public function materis()
+    {
+        return $this->hasMany('App\Models\MateriModul');
+    }
 }

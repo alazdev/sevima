@@ -40,7 +40,6 @@ class MataPelajaranController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        
     }
 
     public function store(MataPelajaranPostRequest $request, $id_status)

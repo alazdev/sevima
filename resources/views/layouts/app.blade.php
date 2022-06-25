@@ -53,25 +53,52 @@
                 {{ config('app.name', 'Laravel') }}
             </a>
             <div class="collapse navbar-collapse" id="navbarCollapseAlt">
-                @auth
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Dasbor</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Buku</a>
-                        </li>
-                        <li class="nav-item dropdown show-on-hover">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                Master data
-                            </a>
-                            <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                <a class="dropdown-item" href="dashboard1.html">Kategori Buku</a>
-                            </div>
-                        </li>
-                    </ul>
-                @endauth
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Beranda</a>
+                    </li>
+                    @auth
+                        @if(auth()->User()->level == 1 || auth()->User()->level == 2)
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dasbor</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Permintaan Verifikasi Kelas</a>
+                            </li>
+                            <li class="nav-item dropdown show-on-hover">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Data Pengguna
+                                </a>
+                                <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <a class="dropdown-item" href="#">Admin</a>
+                                    <a class="dropdown-item" href="#">Mentor/Guru</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown show-on-hover">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Master data
+                                </a>
+                                <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <a class="dropdown-item" href="#">Pengaturan Status/Kelas</a>
+                                    <a class="dropdown-item" href="#">Kategori Kelas Mahasiswa/Pekerja</a>
+                                </div>
+                            </li>
+                        @elseif(auth()->User()->level == 3)
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Dasbor</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Kelas</a>
+                            </li>
+                        @elseif(auth()->User()->level == 4)
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Kelas Saya</a>
+                            </li>
+                        @endif
+                    @endauth
+                </ul>
             </div>
             <ul class="navbar-nav hk-navbar-content">
                 @guest

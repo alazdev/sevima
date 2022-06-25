@@ -15,6 +15,8 @@ class CreateMataPelajaransTable extends Migration
     {
         Schema::create('mata_pelajarans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->foreignId('status_id')->constrained('statuses');
             $table->timestamps();
         });
     }

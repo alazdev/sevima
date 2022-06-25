@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Mentor extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'foto',
+        'profesi',
+        'deskripsi',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

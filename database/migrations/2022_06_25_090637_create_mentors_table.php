@@ -15,6 +15,10 @@ class CreateMentorsTable extends Migration
     {
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('foto')->nullable()->default(NULL);
+            $table->string('profesi');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ class CreateSiswasTable extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('foto')->nullable()->default(NULL);
+            $table->string('email_orang_tua')->nullable()->default(NULL);
             $table->timestamps();
         });
     }

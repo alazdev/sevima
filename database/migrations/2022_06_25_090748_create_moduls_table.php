@@ -22,6 +22,7 @@ class CreateModulsTable extends Migration
             $table->string('judul');
             $table->string('sampul');
             $table->foreignId('user_id')->constrained('users');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

@@ -50,53 +50,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="hk-row">
-                            <div class="col-lg-4">
-                                <div class="card card-sm">
-                                    <div class="card-body">
-                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Admin</span>
-                                        <div class="d-flex align-items-center justify-content-between position-relative">
-                                            <div>
-                                                <span class="d-block">
-                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-admin">sedang memuat...</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card card-sm">
-                                    <div class="card-body">
-                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Mentor</span>
-                                        <div class="d-flex align-items-center justify-content-between position-relative">
-                                            <div>
-                                                <span class="d-block">
-                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-mentor">sedang memuat...</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card card-sm">
-                                    <div class="card-body">
-                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Siswa</span>
-                                        <div class="d-flex align-items-center justify-content-between position-relative">
-                                            <div>
-                                                <span class="d-block">
-                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-siswa">sedang memuat...</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="hk-row">
                             <div class="col-md-12">
                                 <div class="card">
@@ -108,6 +61,87 @@
                                         <div class="hk-legend-wrap mt-10">
                                             <div class="hk-legend">
                                                 <span class="d-10 bg-red rounded-circle d-inline-block"></span><span>Pengguna</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="hk-row">
+                            <div class="col-lg-4">
+                                <div class="card card-sm">
+                                    <div class="card-body">
+                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Modul</span>
+                                        <div class="d-flex align-items-center justify-content-between position-relative">
+                                            <div>
+                                                <span class="d-block">
+                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-modul">sedang memuat...</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card card-sm">
+                                    <div class="card-body">
+                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Modul Telah Diambil</span>
+                                        <div class="d-flex align-items-center justify-content-between position-relative">
+                                            <div>
+                                                <span class="d-block">
+                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-ambil-modul">sedang memuat...</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card card-sm">
+                                    <div class="card-body">
+                                        <span class="d-block font-11 font-weight-500 text-dark text-uppercase mb-10">Jumlah Rating</span>
+                                        <div class="d-flex align-items-center justify-content-between position-relative">
+                                            <div>
+                                                <span class="d-block">
+                                                    <span class="display-5 font-weight-400 text-dark widget-load jumlah-rating">sedang memuat...</span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hk-row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-action">
+                                        <h6>Total Modul Terverfikasi</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="e_chart_3" class="echart" style="height:190px;"></div>
+                                        <div class="hk-legend-wrap mt-10">
+                                            <div class="hk-legend">
+                                                <span class="d-10 bg-red rounded-circle d-inline-block"></span><span>Modul</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hk-row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-action">
+                                        <h6>Total Modul Telah Diambil</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="e_chart_4" class="echart" style="height:190px;"></div>
+                                        <div class="hk-legend-wrap mt-10">
+                                            <div class="hk-legend">
+                                                <span class="d-10 bg-red rounded-circle d-inline-block"></span><span>Modul Telah Diambil</span>
                                             </div>
                                         </div>
                                     </div>
@@ -187,9 +221,9 @@
             eChart_1.resize();
         }
 
-        function drawBarChart(data, title)
+        function drawBarChart(data, title, e)
         {
-            var eChart_2 = echarts.init(document.getElementById('e_chart_2'));
+            var eChart_bar = echarts.init(document.getElementById('e_chart_'+e));
             var markLineData = [];
             for (var i = 1; i < data.length; i++) {
                 markLineData.push([{
@@ -283,8 +317,8 @@
                     // }
                 ]
             };
-            eChart_2.setOption(option2);
-            eChart_2.resize();
+            eChart_bar.setOption(option2);
+            eChart_bar.resize();
         }
 
         $('#dash-tab a').on('click', function (e) {
@@ -323,9 +357,9 @@
             },
             success: function(data)
             {
-                $('.jumlah-admin').text(data.admin);
-                $('.jumlah-mentor').text(data.mentor);
-                $('.jumlah-siswa').text(data.siswa);
+                $('.jumlah-modul').text(data.modul);
+                $('.jumlah-ambil-modul').text(data.ambilModul);
+                $('.jumlah-rating').text(data.rating);
             },
             error: function(xhr, status, error)
             {
@@ -341,16 +375,22 @@
             url: "{{ route('admin.data.bar-chart') }}",
             beforeSend: function()
             {
-                drawBarChart([0],['sedang memuat...']);
+                drawBarChart([0],['sedang memuat...'],2);
+                drawBarChart([0],['sedang memuat...'],3);
+                drawBarChart([0],['sedang memuat...'],4);
             },
             success: function(data)
             {
-                drawBarChart(data.data, data.tanggal);
+                drawBarChart(data.user.data, data.user.tanggal, 2);
+                drawBarChart(data.modul.data, data.modul.tanggal, 3);
+                drawBarChart(data.ambilModul.data, data.ambilModul.tanggal, 4);
                 console.log(data);
             },
             error: function(xhr, status, error)
             {
-                drawBarChart([0],['gagal memuat...']);
+                drawBarChart([0],['gagal memuat...'],2);
+                drawBarChart([0],['gagal memuat...'],3);
+                drawBarChart([0],['gagal memuat...'],4);
                 //
             }
         });

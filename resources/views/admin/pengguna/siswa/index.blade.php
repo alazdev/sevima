@@ -39,16 +39,14 @@
                                     <thead>
                                         <tr>
                                             <th data-priority="1">Nama</th>
-                                            <th>Email</th>
-                                            <th data-priority="2">Aksi</th>
+                                            <th data-priority="2">Email</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
                                     <tfoot>
                                         <tr>
                                             <th data-priority="1">Nama</th>
-                                            <th>Email</th>
-                                            <th data-priority="2">Aksi</th>
+                                            <th data-priority="2">Email</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -99,13 +97,6 @@
                 columns: [
                     {data: 'name', name: 'name'},
                     {data: 'email', name: 'email'},
-                    {
-                        data: 'action', 
-                        name: 'action',
-                        className: 'nowrap text-right',
-                        orderable: false, 
-                        searchable: false
-                    },
                 ],
                 columnDefs: [
                     { responsivePriority: 1, targets: 0 },

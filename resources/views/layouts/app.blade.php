@@ -63,7 +63,7 @@
                                 <a class="nav-link" href="{{route('admin.index')}}">Dasbor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Kelas</a>
+                                <a class="nav-link" href="{{route('admin.modul.index')}}">Modul</a>
                             </li>
                             <li class="nav-item dropdown show-on-hover">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -82,20 +82,24 @@
                                     Master data
                                 </a>
                                 <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item" href="{{route('admin.status.index')}}">Status Siswa</a>
+                                    <a class="dropdown-item" href="{{route('admin.status.index')}}">Jenjang Sekolah</a>
                                     <a class="dropdown-item" href="{{route('admin.kategori.index')}}">Kategori Kelas Mahasiswa/Pekerja</a>
                                 </div>
                             </li>
-                        @elseif(auth()->User()->level == 3)
+                        @elseif(auth()->User()->level == 2)
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Dasbor</a>
+                                <a class="nav-link" href="{{route('admin.index')}}">Dasbor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Kelas</a>
+                                <a class="nav-link" href="{{route('admin.modul.index')}}">Modul</a>
+                            </li>
+                        @elseif(auth()->User()->level == 3)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('mentor.modul.index')}}">Modul</a>
                             </li>
                         @elseif(auth()->User()->level == 4)
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Kelas Saya</a>
+                                <a class="nav-link" href="{{route('siswa.ambil-modul.index')}}">Modul Diambil</a>
                             </li>
                         @endif
                     @endauth
@@ -116,6 +120,7 @@
                     @endif
 
                 @else
+                @if(auth()->User()->level <= 2)
                 <li class="nav-item dropdown dropdown-notifications">
                     <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"><span class="feather-icon"><i
@@ -225,6 +230,7 @@
                         </div>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item dropdown dropdown-authentication">
                     <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -242,11 +248,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX"
                         data-dropdown-out="flipOutX">
-                        <a class="dropdown-item" href="profile.html"><i
-                                class="dropdown-icon zmdi zmdi-account"></i><span>Profil</span></a>
-                        <a class="dropdown-item" href="#"><i
-                                class="dropdown-icon zmdi zmdi-settings"></i><span>Pengaturan</span></a>
-                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="profile.html"><i class="dropdown-icon zmdi zmdi-account"></i><span>Profil</span></a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="dropdown-icon zmdi zmdi-power"></i>
@@ -277,7 +279,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <p class="d-inline-block">Ikuti kami</p>
-                            <a href="#"
+                            <a href="https://github.com/alazimdev" target="_blank"
                                 class="d-inline-block btn btn-icon btn-icon-only btn-indigo btn-icon-style-4"><span
                                     class="btn-icon-wrap"><i class="fa fa-github"></i></span></a>
                         </div>

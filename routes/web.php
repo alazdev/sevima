@@ -27,6 +27,13 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
         Route::get('/bar-chart', [App\Http\Controllers\Admin\DasborController::class, 'barChart'])->name('bar-chart');
     });
 
+    // START Menu Modul
+    Route::group(['prefix'=>'modul','as'=>'modul.'], function(){
+        Route::get('/', [App\Http\Controllers\Admin\ModulController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\Admin\ModulController::class, 'data'])->name('data');
+    });
+    // END Menu Modul
+
     // START Menu Pengguna
     Route::group(['prefix'=>'admin','as'=>'admin.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('index');
@@ -40,7 +47,6 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
         Route::get('/', [App\Http\Controllers\Admin\MentorController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\Admin\MentorController::class, 'data'])->name('data');
         Route::post('/tambah', [App\Http\Controllers\Admin\MentorController::class, 'store'])->name('store');
-        Route::get('/{id}/detail', [App\Http\Controllers\Admin\MentorController::class, 'show'])->name('show');
         Route::put('/{id}/atur-ulang-kata-sandi', [App\Http\Controllers\Admin\MentorController::class, 'resetPassword'])->name('reset-password');
         Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\MentorController::class, 'destroy'])->name('destroy');
     });
@@ -48,12 +54,11 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
     Route::group(['prefix'=>'siswa','as'=>'siswa.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\SiswaController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\Admin\SiswaController::class, 'data'])->name('data');
-        Route::get('/{id}/detail', [App\Http\Controllers\Admin\SiswaController::class, 'show'])->name('show');
     });
     // END Menu Pengguna
 
     // STAR Menu Master Data
-    Route::group(['prefix'=>'status','as'=>'status.'], function(){
+    Route::group(['prefix'=>'jenjang','as'=>'status.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\StatusController::class, 'index'])->name('index');
         Route::group(['prefix'=>'{id_status}/mata-pelajaran','as'=>'mata-pelajaran.'], function(){
             Route::get('/', [App\Http\Controllers\Admin\MataPelajaranController::class, 'index'])->name('index');
@@ -75,4 +80,38 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
         Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\KategoriController::class, 'destroy'])->name('destroy');
     });
     // END Menu Master Data
+});
+
+Route::group(['prefix'=>'mentor','as'=>'mentor.','middleware'=>'auth'], function(){
+    Route::group(['prefix'=>'data','as'=>'data.'], function(){
+        Route::get('/kelas', [App\Http\Controllers\Mentor\MentorController::class, 'kelas'])->name('kelas');
+        Route::get('/mata-pelajaran', [App\Http\Controllers\Mentor\MentorController::class, 'mataPelajaran'])->name('mata-pelajaran');
+        Route::get('/kategori', [App\Http\Controllers\Mentor\MentorController::class, 'kategori'])->name('kategori');
+    });
+    Route::group(['prefix'=>'modul','as'=>'modul.'], function(){
+        Route::get('/', [App\Http\Controllers\Mentor\ModulController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\Mentor\ModulController::class, 'data'])->name('data');
+        Route::post('/tambah', [App\Http\Controllers\Mentor\ModulController::class, 'store'])->name('store');
+        Route::get('/{id}/detail', [App\Http\Controllers\Mentor\ModulController::class, 'view'])->name('view');
+        Route::group(['prefix'=>'{id_modul}/sub-modul','as'=>'sub-modul.'], function(){
+            Route::get('/', [App\Http\Controllers\Mentor\SubModulController::class, 'index'])->name('index');
+            Route::post('/data', [App\Http\Controllers\Mentor\SubModulController::class, 'data'])->name('data');
+            Route::post('/tambah', [App\Http\Controllers\Mentor\SubModulController::class, 'store'])->name('store');
+            Route::delete('/{id}/hapus', [App\Http\Controllers\Mentor\SubModulController::class, 'destroy'])->name('destroy');
+            Route::group(['prefix'=>'{id_sub_modul}/materi','as'=>'materi.'], function(){
+                Route::get('/', [App\Http\Controllers\Mentor\MateriModulController::class, 'index'])->name('index');
+                Route::post('/data', [App\Http\Controllers\Mentor\MateriModulController::class, 'data'])->name('data');
+                Route::post('/tambah', [App\Http\Controllers\Mentor\MateriModulController::class, 'store'])->name('store');
+                Route::delete('/{id}/hapus', [App\Http\Controllers\Mentor\MateriModulController::class, 'destroy'])->name('destroy');
+            });
+        });
+        Route::delete('/{id}/hapus', [App\Http\Controllers\Mentor\ModulController::class, 'destroy'])->name('destroy');
+    });
+});
+
+Route::group(['prefix'=>'siswa','as'=>'siswa.','middleware'=>'auth'], function(){
+    Route::group(['prefix'=>'modul','as'=>'modul.'], function(){
+        Route::get('/', [App\Http\Controllers\Admin\ModulController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\Admin\ModulController::class, 'data'])->name('data');
+    });
 });

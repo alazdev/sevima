@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
+use App\Models\Modul;
+use App\Models\AmbilModul;
 
 class DasborController extends Controller
 {
@@ -35,14 +37,14 @@ class DasborController extends Controller
 
     public function widget()
     {
-        $admin  = User::where('level',2)->count();
-        $mentor = User::where('level',3)->count();
-        $siswa  = User::where('level',4)->count();
+        $modul  = Modul::count();
+        $ambilModul = AmbilModul::count();
+        $rating = AmbilModul::whereNotNull('rating')->count();
 
         $data = [
-            'admin' => $admin,
-            'mentor' => $mentor,
-            'siswa' => $siswa,
+            'modul' => $modul,
+            'ambilModul' => $ambilModul,
+            'rating' => $rating,
         ];
         return response()->json($data);
     }
@@ -59,10 +61,40 @@ class DasborController extends Controller
             ->groupBy('bulan')
             ->orderBy('tanggal')
             ->get();
+        $barModul = Modul::select([
+                DB::raw('MIN(created_at) as tanggal'),
+                DB::raw('DATE_FORMAT(MIN(created_at), "%m-%Y") as bulan_tahun'),
+                DB::raw('MONTH(created_at) as bulan'),
+                DB::raw('count(*) as total'),
+            ])
+            ->whereBetween('created_at', [now()->subMonth(11)->startOfMonth(), now()])
+            ->groupBy('bulan')
+            ->orderBy('tanggal')
+            ->get();
+        $barAmbilModul = AmbilModul::select([
+                DB::raw('MIN(created_at) as tanggal'),
+                DB::raw('DATE_FORMAT(MIN(created_at), "%m-%Y") as bulan_tahun'),
+                DB::raw('MONTH(created_at) as bulan'),
+                DB::raw('count(*) as total'),
+            ])
+            ->whereBetween('created_at', [now()->subMonth(11)->startOfMonth(), now()])
+            ->groupBy('bulan')
+            ->orderBy('tanggal')
+            ->get();
         
         $barChart = [
-            'data' => $barUser->pluck('total')->toArray(),
-            'tanggal' => $barUser->pluck('bulan_tahun')->toArray(),
+            'user' => [
+                'data' => $barUser->pluck('total')->toArray(),
+                'tanggal' => $barUser->pluck('bulan_tahun')->toArray(),
+            ],
+            'modul' => [
+                'data' => $barModul->pluck('total')->toArray(),
+                'tanggal' => $barModul->pluck('bulan_tahun')->toArray(),
+            ],
+            'ambilModul' => [
+                'data' => $barAmbilModul->pluck('total')->toArray(),
+                'tanggal' => $barAmbilModul->pluck('bulan_tahun')->toArray(),
+            ],
         ];
         return response()->json($barChart);
     }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Mata Pelajaran')
+@section('title', '| Sub Modul')
 
 @section('head')
     <!-- Data Table CSS -->
@@ -20,12 +20,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('admin.status.mata-pelajaran.store', $status->id)}}">
+                    <form method="POST" action="{{route('mentor.modul.sub-modul.store', $modul->id)}}">
                         @csrf
                         <div class="form-group">
-                            <label for="nama">Nama*</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Kategori..." required>
-                            @error('nama')
+                            <label for="judul">Judul*</label>
+                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Judul Sub Modul..." required>
+                            @error('judul')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -44,9 +44,9 @@
     <!-- Breadcrumb -->
     <nav class="hk-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-light bg-transparent">
-            <li class="breadcrumb-item"><a href="{{route('admin.status.index')}}">Jenjang Sekolah</a></li>
-            <li class="breadcrumb-item" aria-current="page">{{$status->nama}}</li>
-            <li class="breadcrumb-item active" aria-current="page">Mata Pelajaran</li>
+            <li class="breadcrumb-item"><a href="{{route('mentor.modul.index')}}">Modul</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{$modul->judul}}</li>
+            <li class="breadcrumb-item active" aria-current="page">Sub Modul</li>
         </ol>
     </nav>
     <!-- /Breadcrumb -->
@@ -57,7 +57,7 @@
         <!-- Title -->
         <div class="hk-pg-header align-items-top">
             <div>
-                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Mata Pelajaran</h4>
+                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Sub Modul</h4>
             </div>
             <div class="d-flex">
                 <button class="btn btn-sm btn-outline-primary btn-wth-icon icon-wthot-bg mb-15">
@@ -75,17 +75,17 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="table-wrap">
-                                <table id="datatables-mata-pelajaran" class="table table-hover w-100 display pb-30">
+                                <table id="datatables-sub-modul" class="table table-hover w-100 display pb-30">
                                     <thead>
                                         <tr>
-                                            <th data-priority="1">Nama</th>
+                                            <th data-priority="1">Judul</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
                                     <tfoot>
                                         <tr>
-                                            <th data-priority="1">Nama</th>
+                                            <th data-priority="1">Judul</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -122,13 +122,13 @@
             $('#modalTambahData').modal('show');
         @endif
         $(function () {
-            var table = $('#datatables-mata-pelajaran').DataTable({
+            var table = $('#datatables-sub-modul').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: {
                     type: "POST",
-                    url: "{{ route('admin.status.mata-pelajaran.data', $status->id) }}",
+                    url: "{{ route('mentor.modul.sub-modul.data', $modul->id) }}",
                     data: function (d) {
                         d._token = "{{csrf_token()}}"
                     },
@@ -138,7 +138,7 @@
                     }
                 },
                 columns: [
-                    {data: 'nama', name: 'nama'},
+                    {data: 'judul', name: 'judul'},
                     {
                         data: 'action', 
                         name: 'action',
@@ -162,10 +162,10 @@
         function deleteData()
         {
             var id = $(event.currentTarget).data("value");
-            var nama = $(event.currentTarget).data("nama");
+            var judul = $(event.currentTarget).data("judul");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah Kamu yakin untuk menghapus mata pelajaran dengan nama "'+nama+'"?',
+                title: 'Apakah Kamu yakin untuk menghapus sub modul dengan judul "'+judul+'"?',
                 text: "Jika Kamu hapus, data tidak akan bisa dikembalikan lagi!",
                 icon: "warning",
                 showCancelButton: true,

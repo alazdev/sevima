@@ -29,7 +29,6 @@ class MentorController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '
-                        <a href="'.route('admin.mentor.show', $row->id).'" class="show btn btn-outline-secondary btn-sm mx-1"><i class="fa fa-eye"></i> Lihat</a>
                         <a href="#" onclick="resetPasswordData()" data-value="'.$row->id.'" data-nama="'.$row->name.'" class="reset-password btn btn-outline-info btn-sm mx-1"><i class="fa fa-cog"></i> Atur Ulang Sandi</a> 
                         <form id="reset-password-data-'.$row->id.'" action="'.route('admin.mentor.reset-password', $row->id).'" method="POST" class="d-none">
                             '.csrf_field().method_field('PUT').'

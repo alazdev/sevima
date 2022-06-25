@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SubModul extends Model
 {
     use HasFactory;
+
+    public function modul()
+    {
+        return $this->belongsTo('App\Models\Modul');
+    }
 }

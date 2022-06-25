@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Mata Pelajaran')
+@section('title', '| Materi')
 
 @section('head')
     <!-- Data Table CSS -->
@@ -20,16 +20,41 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('admin.status.mata-pelajaran.store', $status->id)}}">
+                    <form method="POST" action="{{route('mentor.modul.sub-modul.materi.store', [$modul->id,$subModul->id])}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="nama">Nama*</label>
-                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Kategori..." required>
-                            @error('nama')
+                            <label for="judul">Judul*</label>
+                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Judul Materi..." required>
+                            @error('judul')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="tipe">Tipe*</label>
+                            <select class="form-control @error('tipe') is-invalid @enderror" id="tipe" name="tipe" required>
+                                <option value="1">Embed Youtube</option>
+                                <option value="2">PDF</option>
+                            </select>
+                            @error('embed_youtube')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            @error('pdf')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group group_embed_youtube">
+                            <label for="embed_youtube">Embed Youtube*</label>
+                            <input type="text" class="form-control @error('embed_youtube') is-invalid @enderror" id="embed_youtube" name="embed_youtube" placeholder="contoh: https://www.youtube.com/embed/liiinkk" required>
+                        </div>
+                        <div class="form-group group_pdf">
+                            <label for="pdf">PDF*</label>
+                            <input type="file" class="form-control @error('pdf') is-invalid @enderror" id="pdf" name="pdf" accept="application/pdf" required>
                         </div>
                         <hr>
                         <button type="submit" class="btn btn-outline-info float-right"><i class="fa fa-save"></i> Tambahkan Data</button>
@@ -44,9 +69,11 @@
     <!-- Breadcrumb -->
     <nav class="hk-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-light bg-transparent">
-            <li class="breadcrumb-item"><a href="{{route('admin.status.index')}}">Jenjang Sekolah</a></li>
-            <li class="breadcrumb-item" aria-current="page">{{$status->nama}}</li>
-            <li class="breadcrumb-item active" aria-current="page">Mata Pelajaran</li>
+            <li class="breadcrumb-item"><a href="{{route('mentor.modul.index')}}">Modul</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{$modul->judul}}</li>
+            <li class="breadcrumb-item"><a href="{{route('mentor.modul.sub-modul.index', $modul->id)}}">Sub Modul</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{$subModul->judul}}</li>
+            <li class="breadcrumb-item active" aria-current="page">Materi</li>
         </ol>
     </nav>
     <!-- /Breadcrumb -->
@@ -57,7 +84,7 @@
         <!-- Title -->
         <div class="hk-pg-header align-items-top">
             <div>
-                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Mata Pelajaran</h4>
+                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Materi</h4>
             </div>
             <div class="d-flex">
                 <button class="btn btn-sm btn-outline-primary btn-wth-icon icon-wthot-bg mb-15">
@@ -75,17 +102,21 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="table-wrap">
-                                <table id="datatables-mata-pelajaran" class="table table-hover w-100 display pb-30">
+                                <table id="datatables-materi" class="table table-hover w-100 display pb-30">
                                     <thead>
                                         <tr>
-                                            <th data-priority="1">Nama</th>
+                                            <th data-priority="1">Judul</th>
+                                            <th>Tipe</th>
+                                            <th>Isi</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
                                     <tfoot>
                                         <tr>
-                                            <th data-priority="1">Nama</th>
+                                            <th data-priority="1">Judul</th>
+                                            <th>Tipe</th>
+                                            <th>Isi</th>
                                             <th data-priority="2">Aksi</th>
                                         </tr>
                                     </tfoot>
@@ -122,13 +153,34 @@
             $('#modalTambahData').modal('show');
         @endif
         $(function () {
-            var table = $('#datatables-mata-pelajaran').DataTable({
+            $('.group_embed_youtube').show();
+            $('.group_pdf').hide();
+
+            $('#embed_youtube').prop('required',true);
+            $('#pdf').prop('required',false);
+            $('#tipe').change(function () {
+                var tipe = $('#tipe').val();
+                if (tipe == 1) {
+                    $('.group_embed_youtube').show();
+                    $('.group_pdf').hide();
+
+                    $('#embed_youtube').prop('required',true);
+                    $('#pdf').prop('required',false);
+                } else {
+                    $('.group_embed_youtube').hide();
+                    $('.group_pdf').show();
+
+                    $('#embed_youtube').prop('required',false);
+                    $('#pdf').prop('required',true);
+                }
+            });
+            var table = $('#datatables-materi').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: {
                     type: "POST",
-                    url: "{{ route('admin.status.mata-pelajaran.data', $status->id) }}",
+                    url: "{{ route('mentor.modul.sub-modul.materi.data', [$modul->id,$subModul->id]) }}",
                     data: function (d) {
                         d._token = "{{csrf_token()}}"
                     },
@@ -138,7 +190,9 @@
                     }
                 },
                 columns: [
-                    {data: 'nama', name: 'nama'},
+                    {data: 'judul', name: 'judul'},
+                    {data: 'tipe', name: 'tipe'},
+                    {data: 'isi', name: 'isi'},
                     {
                         data: 'action', 
                         name: 'action',
@@ -162,10 +216,10 @@
         function deleteData()
         {
             var id = $(event.currentTarget).data("value");
-            var nama = $(event.currentTarget).data("nama");
+            var judul = $(event.currentTarget).data("judul");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah Kamu yakin untuk menghapus mata pelajaran dengan nama "'+nama+'"?',
+                title: 'Apakah Kamu yakin untuk menghapus materi dengan judul "'+judul+'"?',
                 text: "Jika Kamu hapus, data tidak akan bisa dikembalikan lagi!",
                 icon: "warning",
                 showCancelButton: true,

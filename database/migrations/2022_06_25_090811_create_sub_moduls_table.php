@@ -17,8 +17,6 @@ class CreateSubModulsTable extends Migration
             $table->id();
             $table->foreignId('modul_id')->constrained('moduls');
             $table->string('judul');
-            $table->integer('tipe');
-            $table->text('isi');
             $table->timestamps();
         });
     }

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', '| Status Siswa')
+@section('title', '| Jenjang Sekolah')
 
 @section('content')
     <!-- Breadcrumb -->
     <nav class="hk-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-light bg-transparent">
-            <li class="breadcrumb-item active" aria-current="page">Status Siswa</li>
+            <li class="breadcrumb-item active" aria-current="page">Jenjang Sekolah</li>
         </ol>
     </nav>
     <!-- /Breadcrumb -->
@@ -17,7 +17,7 @@
         <!-- Title -->
         <div class="hk-pg-header align-items-top">
             <div>
-                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Status Siswa</h4>
+                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Jenjang Sekolah</h4>
             </div>
         </div>
         <!-- /Title -->

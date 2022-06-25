@@ -20,16 +20,7 @@ class SiswaController extends Controller
         if($request->ajax())
         {
             $data = User::with('siswa')->where('level', 4)->latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '
-                        <a href="'.route('admin.siswa.show', $row->id).'" class="show btn btn-outline-secondary btn-sm mx-1"><i class="fa fa-eye"></i> Lihat</a>
-                    ';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            return Datatables::of($data)->make(true);
         }
     }
     

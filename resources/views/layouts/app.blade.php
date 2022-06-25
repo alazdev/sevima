@@ -55,15 +55,15 @@
             <div class="collapse navbar-collapse" id="navbarCollapseAlt">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Beranda</a>
+                        <a class="nav-link" href="{{route('home')}}">Beranda</a>
                     </li>
                     @auth
                         @if(auth()->User()->level == 1 || auth()->User()->level == 2)
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Dasbor</a>
+                                <a class="nav-link" href="{{route('admin.index')}}">Dasbor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Permintaan Verifikasi Kelas</a>
+                                <a class="nav-link" href="#">Kelas</a>
                             </li>
                             <li class="nav-item dropdown show-on-hover">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
@@ -71,8 +71,9 @@
                                     Data Pengguna
                                 </a>
                                 <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item" href="#">Admin</a>
-                                    <a class="dropdown-item" href="#">Mentor/Guru</a>
+                                    <a class="dropdown-item" href="{{route('admin.admin.index')}}">Admin</a>
+                                    <a class="dropdown-item" href="{{route('admin.mentor.index')}}">Mentor</a>
+                                    <a class="dropdown-item" href="{{route('admin.siswa.index')}}">Siswa</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown show-on-hover">

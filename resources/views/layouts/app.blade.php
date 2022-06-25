@@ -82,8 +82,8 @@
                                     Master data
                                 </a>
                                 <div class="dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                    <a class="dropdown-item" href="#">Pengaturan Status/Kelas</a>
-                                    <a class="dropdown-item" href="#">Kategori Kelas Mahasiswa/Pekerja</a>
+                                    <a class="dropdown-item" href="{{route('admin.status.index')}}">Pengaturan Status/Kelas</a>
+                                    <a class="dropdown-item" href="{{route('admin.kategori.index')}}">Kategori Kelas Mahasiswa/Pekerja</a>
                                 </div>
                             </li>
                         @elseif(auth()->User()->level == 3)

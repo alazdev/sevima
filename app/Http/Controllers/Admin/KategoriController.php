@@ -26,7 +26,6 @@ class KategoriController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                     $actionBtn = '
-                        <a href="'.route('admin.kategori.show', $row->id).'" class="show btn btn-outline-secondary btn-sm mx-1"><i class="fa fa-eye"></i> Lihat</a> 
                         <a href="'.route('admin.kategori.edit', $row->id).'" class="edit btn btn-outline-info btn-sm mx-1"><i class="fa fa-edit"></i> Edit</a> 
                         <a href="#" onclick="deleteData()" data-value="'.$row->id.'" data-nama="'.$row->nama.'" class="delete btn btn-outline-danger btn-sm mx-1"><i class="fa fa-trash"></i> Hapus</a>
                         <form id="delete-data-'.$row->id.'" action="'.route('admin.kategori.destroy', $row->id).'" method="POST" class="d-none">
@@ -56,13 +55,6 @@ class KategoriController extends Controller
         {
             return back()->with('error', 'Data gagal ditambahkan.');
         }
-    }
-    
-    public function show($id)
-    {
-        $kategori = Kategori::findOrFail($id);
-
-        return view('admin.master-data.kategori.detail', compact('kategori'));
     }
     
     public function edit($id)

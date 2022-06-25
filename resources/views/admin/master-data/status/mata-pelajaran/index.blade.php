@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Kategori Kelas')
+@section('title', '| Mata Pelajaran')
 
 @section('head')
     <!-- Data Table CSS -->
@@ -20,7 +20,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('admin.kategori.store')}}">
+                    <form method="POST" action="{{route('admin.status.mata-pelajaran.store', $status->id)}}">
                         @csrf
                         <div class="form-group">
                             <label for="nama">Nama*</label>
@@ -44,7 +44,9 @@
     <!-- Breadcrumb -->
     <nav class="hk-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-light bg-transparent">
-            <li class="breadcrumb-item active" aria-current="page">Kategori Kelas Mahasiswa/Pekerja</li>
+            <li class="breadcrumb-item"><a href="{{route('admin.status.index')}}">Status</a></li>
+            <li class="breadcrumb-item" aria-current="page">{{$status->nama}}</li>
+            <li class="breadcrumb-item active" aria-current="page">Mata Pelajaran</li>
         </ol>
     </nav>
     <!-- /Breadcrumb -->
@@ -55,7 +57,7 @@
         <!-- Title -->
         <div class="hk-pg-header align-items-top">
             <div>
-                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Kategori Kelas Mahasiswa/Pekerja</h4>
+                <h4 class="hk-pg-title font-weight-600 mb-10"><span class="pg-title-icon"><span class="feather-icon"><i data-feather="tag"></i></span></span>Mata Pelajaran</h4>
             </div>
             <div class="d-flex">
                 <button class="btn btn-sm btn-outline-primary btn-wth-icon icon-wthot-bg mb-15">
@@ -73,7 +75,7 @@
                     <div class="row">
                         <div class="col-sm">
                             <div class="table-wrap">
-                                <table id="datatables-kategori" class="table table-hover w-100 display pb-30">
+                                <table id="datatables-mata-pelajaran" class="table table-hover w-100 display pb-30">
                                     <thead>
                                         <tr>
                                             <th data-priority="1">Nama</th>
@@ -120,13 +122,13 @@
             $('#modalTambahData').modal('show');
         @endif
         $(function () {
-            var table = $('#datatables-kategori').DataTable({
+            var table = $('#datatables-mata-pelajaran').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: {
                     type: "POST",
-                    url: "{{ route('admin.kategori.data') }}",
+                    url: "{{ route('admin.status.mata-pelajaran.data', $status->id) }}",
                     data: function (d) {
                         d._token = "{{csrf_token()}}"
                     },
@@ -163,7 +165,7 @@
             var nama = $(event.currentTarget).data("nama");
             event.preventDefault();
             Swal.fire({
-                title: 'Apakah Kamu yakin untuk menghapus mentor dengan nama "'+nama+'"?',
+                title: 'Apakah Kamu yakin untuk menghapus mata pelajaran dengan nama "'+nama+'"?',
                 text: "Jika Kamu hapus, data tidak akan bisa dikembalikan lagi!",
                 icon: "warning",
                 showCancelButton: true,

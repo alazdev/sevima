@@ -55,19 +55,21 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'auth'], function()
     // STAR Menu Master Data
     Route::group(['prefix'=>'status','as'=>'status.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\StatusController::class, 'index'])->name('index');
-        Route::post('/data', [App\Http\Controllers\Admin\StatusController::class, 'data'])->name('data');
-        Route::post('/tambah', [App\Http\Controllers\Admin\StatusController::class, 'store'])->name('store');
+        Route::group(['prefix'=>'{id_status}/mata-pelajaran','as'=>'mata-pelajaran.'], function(){
+            Route::get('/', [App\Http\Controllers\Admin\MataPelajaranController::class, 'index'])->name('index');
+            Route::post('/data', [App\Http\Controllers\Admin\MataPelajaranController::class, 'data'])->name('data');
+            Route::post('/tambah', [App\Http\Controllers\Admin\MataPelajaranController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [App\Http\Controllers\Admin\MataPelajaranController::class, 'edit'])->name('edit');
+            Route::put('/{id}/ubah', [App\Http\Controllers\Admin\MataPelajaranController::class, 'update'])->name('update');
+            Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\MataPelajaranController::class, 'destroy'])->name('destroy');
+        });
         Route::get('/{id}/detail', [App\Http\Controllers\Admin\StatusController::class, 'show'])->name('show');
-        Route::get('/{id}/edit', [App\Http\Controllers\Admin\StatusController::class, 'edit'])->name('edit');
-        Route::put('/{id}/ubah', [App\Http\Controllers\Admin\StatusController::class, 'update'])->name('update');
-        Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\StatusController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix'=>'kategori','as'=>'kategori.'], function(){
         Route::get('/', [App\Http\Controllers\Admin\KategoriController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\Admin\KategoriController::class, 'data'])->name('data');
         Route::post('/tambah', [App\Http\Controllers\Admin\KategoriController::class, 'store'])->name('store');
-        Route::get('/{id}/detail', [App\Http\Controllers\Admin\KategoriController::class, 'show'])->name('show');
         Route::get('/{id}/edit', [App\Http\Controllers\Admin\KategoriController::class, 'edit'])->name('edit');
         Route::put('/{id}/ubah', [App\Http\Controllers\Admin\KategoriController::class, 'update'])->name('update');
         Route::delete('/{id}/hapus', [App\Http\Controllers\Admin\KategoriController::class, 'destroy'])->name('destroy');

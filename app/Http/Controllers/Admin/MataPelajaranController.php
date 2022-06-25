@@ -67,7 +67,7 @@ class MataPelajaranController extends Controller
         $status = Status::where([['id',$id_status],['tipe',1]])->firstOrFail();
         $mataPelajaran = MataPelajaran::where([['status_id',$id_status],['id',$id]])->firstOrFail();
 
-        return view('admin.master-data.mata-pelajaran.edit', compact('mataPelajaran','status'));
+        return view('admin.master-data.status.mata-pelajaran.edit', compact('mataPelajaran','status'));
     }
     
     public function update(MataPelajaranPostRequest $request, $id_status, $id)

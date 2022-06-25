@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
-@section('title', '| Edit Kategori Kelas')
+@section('title', '| Edit Mata Pelajaran')
 
 @section('content')
     <!-- Breadcrumb -->
     <nav class="hk-breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb breadcrumb-light bg-transparent">
-            <li class="breadcrumb-item"><a href="{{route('admin.kategori.index')}}">Kategori Kelas Mahasiswa/Pekerja</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.status.index')}}">Status</a></li>
+            <li class="breadcrumb-item">{{$status->nama}}</li>
+            <li class="breadcrumb-item"><a href="{{route('admin.status.mata-pelajaran.index', $status->id)}}">Mata Pelajaran</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit</li>
         </ol>
     </nav>
@@ -28,12 +30,12 @@
             <div class="col-xl-12">
                 <div class="card col-12">
                     <div class="card-body form">
-                        <form method="POST" action="{{route('admin.kategori.update', $kategori->id)}}">
+                        <form method="POST" action="{{route('admin.status.mata-pelajaran.update', [$status->id, $mataPelajaran->id])}}">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="nama">Nama*</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Kategori..." required value="{{$kategori->nama}}">
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Nama Kategori..." required value="{{$mataPelajaran->nama}}">
                                 @error('nama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
